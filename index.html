@@ -31,9 +31,13 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
 .btn{display:inline-block;background:var(--white);color:var(--black);padding:.6rem 1.2rem;border-radius:6px;font-weight:600;cursor:pointer;border:0}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
 .stage{background:var(--charcoal2);border-radius:6px;padding:.8rem;margin-bottom:.6rem}
+.demo-banner{background:var(--review);color:#000;font-weight:700;text-align:center;padding:.5rem 1rem;font-size:.9rem}
+.tablewrap{overflow-x:auto}
+@media(max-width:640px){.hero h1{font-size:1.5rem}.shell{padding:1rem}.nav{gap:.9rem;padding:.8rem 1rem}}
 </style>
 </head>
 <body>
+<div class="demo-banner">STATIC PREVIEW - sample data only. No live solicitations, no accounts, no AI features in this demo.</div>
 <nav class="nav">
   <span class="brand">SMBids</span>
   <a data-s="feed" class="active">For You</a>
@@ -53,7 +57,7 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
   </div>
   <h2>For You <span class="muted" style="font-size:.9rem">- matched to your firm profile</span></h2>
   <p class="muted">National filter: NAICS + set-aside + deadline. Place of performance is a scoring input, never a hard filter.</p>
-  <div class="card"><table>
+  <div class="card tablewrap"><table>
     <thead><tr><th>Verdict</th><th>Opportunity</th><th>NAICS</th><th>Set-aside</th><th>Deadline</th></tr></thead>
     <tbody>
       <tr><td><span class="chip chip-pursue">PURSUE 82</span></td><td>Website redesign &amp; CMS migration</td><td>541511</td><td>Small business</td><td>Dec 12, 2026, 5:00 PM ET</td></tr>
@@ -78,7 +82,7 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
 <section id="matrix" class="screen">
   <h1>Compliance matrix</h1>
   <p class="muted">Every requirement, its source page, an owner, and the evidence needed. Section L vs M separated. A row without a source page is "unverified - check the RFP" and stays out of the draft until a human confirms it.</p>
-  <div class="card"><table>
+  <div class="card tablewrap"><table>
     <thead><tr><th>Requirement</th><th>Source</th><th>Type</th><th>Owner</th><th>Evidence needed</th><th>Status</th></tr></thead>
     <tbody>
       <tr><td>Offeror must own the frontier models offered; third-party/reseller offers non-responsive</td><td>RFP &sect;2.1, p.4</td><td>Eligibility gate</td><td>Owner (go/no-go)</td><td>Ownership attestation - firm cannot meet &rarr; Pass</td><td><span class="chip chip-pass">Gate flagged</span></td></tr>
@@ -92,7 +96,7 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
 <section id="library" class="screen">
   <h1>Content library</h1>
   <p class="muted">The firm's approved memory. Only <strong>Approved, unexpired</strong> items feed the drafter. Proposal Leads propose; only Owner/Admin approves. No auto-approved content, ever.</p>
-  <div class="card"><table>
+  <div class="card tablewrap"><table>
     <thead><tr><th>Item</th><th>Type</th><th>Tags</th><th>Status</th><th>Review by</th></tr></thead>
     <tbody>
       <tr><td>County SEO &amp; content program - results narrative</td><td>Past performance</td><td>541613, marketing</td><td><span class="chip chip-pursue">APPROVED</span></td><td>Mar 2027</td></tr>
