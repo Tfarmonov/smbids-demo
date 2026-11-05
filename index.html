@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SMBids - Find government bids you can actually win</title>
+<style>
+:root{--black:#0a0a0a;--charcoal:#16181d;--charcoal2:#1f2329;--gray:#8b8f98;--grayl:#c9ccd3;--white:#f5f6f8;--pursue:#2f9e6e;--review:#c9a227;--pass:#c0392b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--black);color:var(--white);font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif}
+a{color:var(--grayl);text-decoration:none}a:hover{color:var(--white)}
+.nav{display:flex;align-items:center;gap:1.4rem;padding:1rem 2rem;background:var(--charcoal);border-bottom:1px solid var(--charcoal2);position:sticky;top:0;flex-wrap:wrap}
+.brand{font-weight:700;letter-spacing:.04em;margin-right:1rem}
+.nav a{cursor:pointer;font-size:.95rem}
+.nav a.active{color:var(--white);border-bottom:2px solid var(--white);padding-bottom:2px}
+.shell{max-width:1100px;margin:0 auto;padding:2rem}
+.card{background:var(--charcoal);border:1px solid var(--charcoal2);border-radius:8px;padding:1.25rem;margin-bottom:1rem}
+.chip{border-radius:4px;padding:.1rem .5rem;font-size:.8rem;font-weight:600;white-space:nowrap}
+.chip-pursue{background:var(--pursue);color:#fff}.chip-review{background:var(--review);color:#000}.chip-pass{background:var(--pass);color:#fff}
+.muted{color:var(--gray)}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:.55rem;border-bottom:1px solid var(--charcoal2);vertical-align:top}
+th{color:var(--gray);font-weight:600;font-size:.8rem;text-transform:uppercase}
+.screen{display:none}.screen.active{display:block}
+h1{font-size:1.5rem}h2{font-size:1.1rem}
+.trace{font-size:.8rem;color:var(--gray)}
+.tracebox{border-left:3px solid var(--pursue);padding:.4rem .8rem;margin:.6rem 0;background:var(--charcoal2);border-radius:0 6px 6px 0}
+.flagbox{border-left:3px solid var(--pass);padding:.4rem .8rem;margin:.6rem 0;background:var(--charcoal2);border-radius:0 6px 6px 0}
+.hero{padding:3rem 0 2rem}
+.hero h1{font-size:2.2rem;margin-bottom:.5rem}
+.btn{display:inline-block;background:var(--white);color:var(--black);padding:.6rem 1.2rem;border-radius:6px;font-weight:600;cursor:pointer;border:0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.stage{background:var(--charcoal2);border-radius:6px;padding:.8rem;margin-bottom:.6rem}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span class="brand">SMBids</span>
+  <a data-s="feed" class="active">For You</a>
+  <a data-s="opp">Opportunity</a>
+  <a data-s="matrix">Matrix</a>
+  <a data-s="library">Library</a>
+  <a data-s="draft">Draft</a>
+  <a data-s="board">Board</a>
+  <a data-s="profile">Firm</a>
+</nav>
+<main class="shell">
+
+<section id="feed" class="screen active">
+  <div class="hero">
+    <h1>Find government bids you can actually win.</h1>
+    <p class="muted">Shred them in minutes. Draft from your own past performance - nothing invented.</p>
+  </div>
+  <h2>For You <span class="muted" style="font-size:.9rem">- matched to your firm profile</span></h2>
+  <p class="muted">National filter: NAICS + set-aside + deadline. Place of performance is a scoring input, never a hard filter.</p>
+  <div class="card"><table>
+    <thead><tr><th>Verdict</th><th>Opportunity</th><th>NAICS</th><th>Set-aside</th><th>Deadline</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip chip-pursue">PURSUE 82</span></td><td>Website redesign &amp; CMS migration</td><td>541511</td><td>Small business</td><td>Dec 12, 2026, 5:00 PM ET</td></tr>
+      <tr><td><span class="chip chip-review">REVIEW 55</span></td><td>Marketing analytics dashboard</td><td>541613</td><td>Unrestricted</td><td>Dec 8, 2026, 3:00 PM ET</td></tr>
+      <tr><td><span class="chip chip-pass">PASS</span></td><td>Statewide GenAI Contract (ITS-800000)</td><td>541519</td><td>Unrestricted</td><td>Nov 30, 2026, 2:00 PM ET</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="opp" class="screen">
+  <h1>Statewide GenAI Contract <span class="chip chip-pass">PASS</span></h1>
+  <p class="muted">NC Department of Information Technology - RFP ITS-800000 - questions due Nov 9, 2026; offers open Nov 30, 2026, 2:00 PM ET.</p>
+  <div class="card">
+    <h2>Why this verdict - the hard-gate rule</h2>
+    <p>Score without gates: 90. Verdict: <strong>PASS</strong>. A failed eligibility gate overrides any score.</p>
+    <div class="flagbox"><strong>Eligibility gate - RFP &sect;2.1, p.4:</strong> the State solicits offers only from vendors that <em>own the frontier models offered</em>. Third-party builders and resellers are non-responsive on sight. Your firm builds on others' models &rarr; gate not met.</div>
+    <p class="muted">A 90-point bid you cannot win. SMBids flags it on page 4 - before you spend a week on the other 65 pages. The owner can override any verdict; overrides are logged with a reason.</p>
+  </div>
+  <div class="card"><h2>Shred it</h2><p class="muted">One click pulls the RFP + attachments into the shredder. 200 pages is the normal case - runs as a background job with progress shown.</p><button class="btn">Shred this RFP</button></div>
+</section>
+
+<section id="matrix" class="screen">
+  <h1>Compliance matrix</h1>
+  <p class="muted">Every requirement, its source page, an owner, and the evidence needed. Section L vs M separated. A row without a source page is "unverified - check the RFP" and stays out of the draft until a human confirms it.</p>
+  <div class="card"><table>
+    <thead><tr><th>Requirement</th><th>Source</th><th>Type</th><th>Owner</th><th>Evidence needed</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Offeror must own the frontier models offered; third-party/reseller offers non-responsive</td><td>RFP &sect;2.1, p.4</td><td>Eligibility gate</td><td>Owner (go/no-go)</td><td>Ownership attestation - firm cannot meet &rarr; Pass</td><td><span class="chip chip-pass">Gate flagged</span></td></tr>
+      <tr><td>Submit questions in writing by Nov 9, 2026</td><td>RFP &sect;1.0 schedule</td><td>Milestone / Q&amp;A</td><td>Proposal Lead</td><td>Q&amp;A log entry</td><td>Open</td></tr>
+      <tr><td>Responses organised by &sect;3.5 item number, per offering</td><td>RFP &sect;3.5</td><td>Format rule</td><td>Contributor</td><td>Draft outline mapped to &sect;3.5</td><td>Open</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Amendments re-shred and show a diff - added / removed / changed rows highlighted, never a silent overwrite.</p>
+</section>
+
+<section id="library" class="screen">
+  <h1>Content library</h1>
+  <p class="muted">The firm's approved memory. Only <strong>Approved, unexpired</strong> items feed the drafter. Proposal Leads propose; only Owner/Admin approves. No auto-approved content, ever.</p>
+  <div class="card"><table>
+    <thead><tr><th>Item</th><th>Type</th><th>Tags</th><th>Status</th><th>Review by</th></tr></thead>
+    <tbody>
+      <tr><td>County SEO &amp; content program - results narrative</td><td>Past performance</td><td>541613, marketing</td><td><span class="chip chip-pursue">APPROVED</span></td><td>Mar 2027</td></tr>
+      <tr><td>Company overview boilerplate v3</td><td>Boilerplate</td><td>all</td><td><span class="chip chip-pursue">APPROVED</span></td><td>Jun 2027</td></tr>
+      <tr><td>E-commerce migration case study</td><td>Project description</td><td>541511, web</td><td><span class="chip chip-review">DRAFT</span></td><td>-</td></tr>
+    </tbody>
+  </table></div>
+  <div class="card"><h2>Library health</h2><p class="muted">Gap: no approved past performance for 541512. Surfaced before it costs a bid.</p></div>
+</section>
+
+<section id="draft" class="screen">
+  <h1>Draft - traced, library-only</h1>
+  <p class="muted">Every paragraph shows its traces inline. Untraced claims are flagged and block a clean export. A human approves section by section.</p>
+  <div class="card">
+    <h2>2.1 Technical approach</h2>
+    <p>Our team has delivered 14 content and search programs for regional public-sector-adjacent clients, including a county services portal rebuild completed 8 days early.</p>
+    <div class="tracebox trace">Traced: Library item "County SEO &amp; content program" (approved Mar 12, 2026) + RFP &sect;3.5.2 scope keywords.</div>
+    <p>We guarantee a 40% traffic lift in the first quarter.</p>
+    <div class="flagbox trace">Flagged: no trace to an approved library item or RFP page. Blocked from clean export until resolved.</div>
+  </div>
+  <div class="card"><h2>Export</h2><p class="muted">Word (.docx) formatted to the RFP's format rules from the shred. "Working draft with flags" exports are watermarked as such.</p><button class="btn">Export to Word</button></div>
+</section>
+
+<section id="board" class="screen">
+  <h1>Pursuit board</h1>
+  <p class="muted">Deadline alerts at 10 / 5 / 2 days. A pursuit can't be marked Submitted with an unchecked mandatory pre-flight item without a logged override.</p>
+  <div class="cols">
+    <div><h2>Found</h2><div class="stage">Marketing analytics dashboard<br><span class="muted">Dec 8, 2026, 3:00 PM ET</span></div></div>
+    <div><h2>Go/No-Go</h2><div class="stage">Website redesign &amp; CMS migration<br><span class="chip chip-pursue">PURSUE 82</span></div></div>
+    <div><h2>Pursuing</h2><div class="stage">IT support services - Wake County<br><span class="muted">Shred complete, 34 requirements</span></div></div>
+    <div><h2>Submitted</h2><div class="stage">Branding refresh - City of Raleigh<br><span class="muted">Pre-flight passed 11/11</span></div></div>
+  </div>
+</section>
+
+<section id="profile" class="screen">
+  <h1>Firm profile</h1>
+  <p class="muted">Set up once, used everywhere: legal name, UEI + SAM registration expiry (lapse alerts), set-aside certifications, NAICS/PSC list, NC eVP vendor ID + commodity codes, capabilities narrative, service area.</p>
+  <div class="card"><h2>Onboarding checklist</h2><table>
+    <tbody>
+      <tr><td>&#10003;</td><td>Profile complete</td></tr>
+      <tr><td>&#10003;</td><td>Library seeded (2-3 past proposals uploaded, each item human-approved)</td></tr>
+      <tr><td>&#10003;</td><td>First saved search created</td></tr>
+      <tr><td>&#9634;</td><td>First shred</td></tr>
+    </tbody>
+  </table></div>
+  <div class="card"><h2>eVP commodity-code check</h2><p class="muted">Your NAICS codes cross-map to NC eVP commodity codes. A firm registered under the wrong code never gets the nightly email - likely gaps are flagged here.</p></div>
+</section>
+
+</main>
+<script>
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{
+  document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  a.classList.add('active');
+  document.getElementById(a.dataset.s).classList.add('active');
+}));
+</script>
+</body>
+</html>
