@@ -47,6 +47,7 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
   <a data-s="draft">Draft</a>
   <a data-s="board">Board</a>
   <a data-s="profile">Firm</a>
+  <a data-s="settings">Settings</a>
 </nav>
 <main class="shell">
 
@@ -145,6 +146,23 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
   <div class="card"><h2>eVP commodity-code check</h2><p class="muted">Your NAICS codes cross-map to NC eVP commodity codes. A firm registered under the wrong code never gets the nightly email - likely gaps are flagged here.</p></div>
 </section>
 
+
+<section id="settings" class="screen">
+  <h1>Settings</h1>
+  <div class="card">
+    <h2>New-RFP alerts by area <span class="chip chip-review">SAMPLE</span></h2>
+    <p class="muted">Get notified about new RFPs in a state or area you designate. This never narrows your national feed - it only decides what lands in your inbox.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Label</th><th>Scope</th><th>Match on</th><th>Delivery</th><th>Active</th></tr></thead>
+      <tbody>
+        <tr><td>North Carolina</td><td>State</td><td>Place of performance or issuer</td><td>Nightly email</td><td>On</td></tr>
+        <tr><td>Raleigh metro</td><td>Area</td><td>Place of performance</td><td>Nightly email</td><td>Off</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">Delivery: nightly email digest and in-app. No SMS. Alert areas are a paying-member feature (Starter/Pro).</p>
+  </div>
+  <div class="card"><h2>Deadline reminders</h2><p class="muted">Tracked pursuits remind the owner at 10 / 5 / 2 days before the response deadline.</p></div>
+</section>
 </main>
 <script>
 document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{
