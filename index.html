@@ -5,51 +5,118 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SMBids - Find government bids you can actually win</title>
 <style>
-:root{--black:#0a0a0a;--charcoal:#16181d;--charcoal2:#1f2329;--gray:#8b8f98;--grayl:#c9ccd3;--white:#f5f6f8;--pursue:#2f9e6e;--review:#c9a227;--pass:#c0392b}
+:root{--black:#0c0d0f;--charcoal:#141619;--charcoal-2:#2c2e32;--gray:#a4a6ad;--gray-light:#d8d9de;--white:#f4f4f5;--pursue:#1a7a51;--review:#c9a227;--pass:#c0392b}
 *{box-sizing:border-box}
-body{margin:0;background:var(--black);color:var(--white);font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif}
-a{color:var(--grayl);text-decoration:none}a:hover{color:var(--white)}
-.nav{display:flex;align-items:center;gap:1.4rem;padding:1rem 2rem;background:var(--charcoal);border-bottom:1px solid var(--charcoal2);position:sticky;top:0;flex-wrap:wrap}
-.brand{font-weight:700;letter-spacing:.04em;margin-right:1rem}
-.nav a{cursor:pointer;font-size:.95rem}
-.nav a.active{color:var(--white);border-bottom:2px solid var(--white);padding-bottom:2px}
-.shell{max-width:1100px;margin:0 auto;padding:2rem}
-.card{background:var(--charcoal);border:1px solid var(--charcoal2);border-radius:8px;padding:1.25rem;margin-bottom:1rem}
-.chip{border-radius:4px;padding:.1rem .5rem;font-size:.8rem;font-weight:600;white-space:nowrap}
-.chip-pursue{background:var(--pursue);color:#fff}.chip-review{background:var(--review);color:#000}.chip-pass{background:var(--pass);color:#fff}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--black);color:var(--white);font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.65}
+a{color:var(--gray-light);text-decoration:none}
+p a,td a,li a{text-decoration:underline;text-underline-offset:2px}
+a:hover{color:var(--white)}
+a,button{transition:background-color .15s,color .15s,border-color .15s}
+:focus-visible{outline:2px solid #c4d9ff!important;outline-offset:4px}
+.skip-link{position:fixed;top:-90px;left:18px;background:#fff;color:#111;padding:12px;z-index:99}
+.skip-link:focus{top:16px;color:#111}
+.demo-banner{background:var(--review);color:#000;font-weight:700;text-align:center;padding:.5rem 1rem;font-size:.85rem}
+.app-layout{display:grid;grid-template-columns:244px minmax(0,1fr);min-height:100vh}
+.workspace-nav{border-right:1px solid var(--charcoal-2);background:#101113;padding:32px 20px;display:flex;flex-direction:column;gap:22px}
+.brand{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-weight:750;font-size:23px;letter-spacing:-.8px;color:var(--white);cursor:pointer}
+.brand-mark{display:grid;place-items:center;width:34px;height:34px;background:#f2f2f3;color:#161719;border-radius:9px;font-size:23px;font-weight:800}
+.brand-tag{flex-basis:100%;font-size:10px;font-weight:600;letter-spacing:2.6px;color:var(--gray);margin-left:44px;margin-top:-6px}
+.nav-label,.eyebrow{color:var(--gray);font-size:10px;font-weight:650;letter-spacing:1.7px;text-transform:uppercase;margin:18px 0 0}
+.nav{display:flex;flex-direction:column;align-items:stretch;gap:5px}
+.nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;font-weight:500;font-size:13px;color:#abadb5;line-height:1.5;cursor:pointer}
+.nav a:hover{background:#1c1e22;color:#fff}
+.nav a.is-current{background:#26282c;color:#fff;box-shadow:inset 2px 0 #ddd}
+.nav-icon{font-size:18px;width:20px;text-align:center;color:#b8bac1}
+.nav-note{margin-top:auto;border:1px solid #303238;border-radius:9px;padding:13px;font-size:11px;color:#d5d6db}
+.nav-note p{margin:7px 0 0;color:#a4a6ad;line-height:1.5}
+.status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#bdc0c9;margin-right:7px}
+.workspace-main{min-width:0}
+.workspace-header{min-height:100px;border-bottom:1px solid var(--charcoal-2);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 42px}
+.workspace-header p{margin:3px 0 0;font-size:14px;color:#e3e3e7;font-weight:600}
+.environment-badge{color:#c7c9d0;font-size:11px;border:1px solid #3a3c42;padding:5px 10px;border-radius:30px;white-space:nowrap}
+.shell{max-width:1380px;margin:auto;padding:38px 42px 64px;min-height:70vh}
+h1{font-size:34px;line-height:1.2;letter-spacing:-1.2px;font-weight:600;margin:0 0 14px}
+h2{font-size:18px;line-height:1.4;letter-spacing:-.3px;font-weight:600;margin-top:0}
+p{max-width:80ch}
+h1 + .muted{font-size:13px;max-width:76ch;margin-bottom:30px}
 .muted{color:var(--gray)}
+.card{background:#15171a;border:1px solid #303238;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 8px 32px #00000016}
+.card p{font-size:13px}
+.card h2{margin-bottom:12px}
+.chip{display:inline-block;border-radius:5px;font-size:10px;letter-spacing:.3px;padding:4px 8px;font-weight:600;white-space:nowrap}
+.chip-pursue{background:var(--pursue);color:#fff}
+.chip-review{background:var(--review);color:#000}
+.chip-pass{background:var(--pass);color:#fff}
 table{width:100%;border-collapse:collapse}
-th,td{text-align:left;padding:.55rem;border-bottom:1px solid var(--charcoal2);vertical-align:top}
-th{color:var(--gray);font-weight:600;font-size:.8rem;text-transform:uppercase}
-.screen{display:none}.screen.active{display:block}
-h1{font-size:1.5rem}h2{font-size:1.1rem}
-.trace{font-size:.8rem;color:var(--gray)}
-.tracebox{border-left:3px solid var(--pursue);padding:.4rem .8rem;margin:.6rem 0;background:var(--charcoal2);border-radius:0 6px 6px 0}
-.flagbox{border-left:3px solid var(--pass);padding:.4rem .8rem;margin:.6rem 0;background:var(--charcoal2);border-radius:0 6px 6px 0}
-.hero{padding:3rem 0 2rem}
-.hero h1{font-size:2.2rem;margin-bottom:.5rem}
-.btn{display:inline-block;background:var(--white);color:var(--black);padding:.6rem 1.2rem;border-radius:6px;font-weight:600;cursor:pointer;border:0}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.stage{background:var(--charcoal2);border-radius:6px;padding:.8rem;margin-bottom:.6rem}
-.demo-banner{background:var(--review);color:#000;font-weight:700;text-align:center;padding:.5rem 1rem;font-size:.9rem}
+th{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#b2b5bf;text-align:left}
+th,td{padding:15px 12px;border-bottom:1px solid var(--charcoal-2);vertical-align:top}
+td{font-size:13px}
+tbody tr:hover{background:#1b1e22}
 .tablewrap{overflow-x:auto}
-@media(max-width:640px){.hero h1{font-size:1.5rem}.shell{padding:1rem}.nav{gap:.9rem;padding:.8rem 1rem}}
+.trace{font-size:12px;color:var(--gray)}
+.tracebox{border-left:3px solid var(--pursue);padding:.5rem .9rem;margin:.7rem 0;background:#101113;border-radius:0 6px 6px 0}
+.flagbox{border-left:3px solid var(--pass);padding:.5rem .9rem;margin:.7rem 0;background:#101113;border-radius:0 6px 6px 0}
+.hero{padding:2.5rem 0 1.5rem}
+.hero h1{font-size:2.2rem;margin-bottom:.5rem}
+.btn{display:inline-block;background:#e9e9ec;color:#161719;font-size:13px;font-weight:650;border:1px solid #e9e9ec;border-radius:7px;padding:10px 16px;cursor:pointer}
+.btn:hover{background:#fff;color:#111}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.stage{background:#101113;border:1px solid #303238;border-radius:8px;padding:.9rem;margin-bottom:.6rem;font-size:13px}
+.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.concept-grid .card{margin:0}
+.concept-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#c5c7ce;margin-bottom:12px}
+.workspace-footer{border-top:1px solid #25272b;padding:18px 42px;color:#a4a6ad;font-size:11px}
+.screen{display:none}
+.screen.active{display:block}
+.mobile-menu-toggle{display:none}
+@media(max-width:1000px){.app-layout{grid-template-columns:210px minmax(0,1fr)}.workspace-header{padding:20px 26px}.shell{padding:30px 26px}.concept-grid{grid-template-columns:1fr}}
+@media(max-width:720px){
+  .app-layout{display:block}
+  .workspace-nav{padding:20px;border-right:0;border-bottom:1px solid #303238;gap:12px}
+  .brand-tag{flex-basis:auto;margin:0 0 0 auto;font-size:9px}
+  .mobile-menu-toggle{display:block;background:none;border:1px solid #53565e;color:#e0e1e6;width:100%;text-align:left;padding:10px 12px;min-height:44px;font-size:13px;border-radius:7px;cursor:pointer}
+  .workspace-nav .nav-label{display:none}
+  .workspace-nav .nav{display:none}
+  .workspace-nav .nav.is-open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .nav a{padding:10px;font-size:12px}
+  .nav-icon{width:16px;font-size:16px}
+  .nav-note{display:none}
+  .workspace-header{min-height:76px;padding:16px 20px}
+  .environment-badge{font-size:10px;padding:4px 8px}
+  .shell{padding:28px 20px 44px}
+  h1{font-size:29px}
+  .hero h1{font-size:1.5rem}
+  .card{padding:18px}
+  .workspace-footer{padding:18px 20px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div class="demo-banner">STATIC PREVIEW - sample data only. No live solicitations, no accounts, no AI features in this demo.</div>
-<nav class="nav">
-  <span class="brand">SMBids</span>
-  <a data-s="feed" class="active">For You</a>
-  <a data-s="opp">Opportunity</a>
-  <a data-s="matrix">Matrix</a>
-  <a data-s="library">Library</a>
-  <a data-s="draft">Draft</a>
-  <a data-s="board">Board</a>
-  <a data-s="profile">Firm</a>
-  <a data-s="settings">Settings</a>
-</nav>
-<main class="shell">
+<div class="demo-banner">STATIC PREVIEW - sample data only. No live solicitations, no accounts, no AI features, no payment handling in this demo.</div>
+<div class="app-layout">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <aside class="workspace-nav">
+    <a class="brand" data-s="feed" data-label="For you"><span class="brand-mark" aria-hidden="true">S</span>SMBids<span class="brand-tag">STATIC PREVIEW</span></a>
+    <button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="workspace-links">Workspace menu +</button>
+    <p class="nav-label">Bid workspace</p>
+    <nav id="workspace-links" class="nav" aria-label="Main navigation">
+      <a data-s="feed" data-label="For you" class="is-current" aria-current="page"><span class="nav-icon" aria-hidden="true">&#9700;</span>For you</a>
+      <a data-s="board" data-label="Pursuits"><span class="nav-icon" aria-hidden="true">&#9646;</span>Pursuits</a>
+      <a data-s="opp" data-label="Opportunity"><span class="nav-icon" aria-hidden="true">&#8599;</span>Opportunity</a>
+      <a data-s="matrix" data-label="Compliance"><span class="nav-icon" aria-hidden="true">&#9783;</span>Compliance</a>
+      <a data-s="library" data-label="Library"><span class="nav-icon" aria-hidden="true">&#9508;</span>Library</a>
+      <a data-s="draft" data-label="Draft studio"><span class="nav-icon" aria-hidden="true">&#9998;</span>Draft studio</a>
+      <a data-s="payments" data-label="Payments - concept"><span class="nav-icon" aria-hidden="true">&#8644;</span>Payments &middot; concept</a>
+      <a data-s="profile" data-label="Firm profile"><span class="nav-icon" aria-hidden="true">&#9671;</span>Firm profile</a>
+      <a data-s="settings" data-label="Settings"><span class="nav-icon" aria-hidden="true">&#9881;</span>Settings</a>
+    </nav>
+    <div class="nav-note"><span class="status-dot" aria-hidden="true"></span>Static demo<p>Sample data only. No live payments or guaranteed funds.</p></div>
+  </aside>
+  <div class="workspace-main">
+    <header class="workspace-header"><div><span class="eyebrow">FIND. QUALIFY. BUILD.</span><p id="currentLabel">For you</p></div><span class="environment-badge">Static preview</span></header>
+    <main id="main-content" class="shell" tabindex="-1">
 
 <section id="feed" class="screen active">
   <div class="hero">
@@ -77,13 +144,13 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
     <div class="flagbox"><strong>Eligibility gate - RFP &sect;2.1, p.4:</strong> the State solicits offers only from vendors that <em>own the frontier models offered</em>. Third-party builders and resellers are non-responsive on sight. Your firm builds on others' models &rarr; gate not met.</div>
     <p class="muted">A 90-point bid you cannot win. SMBids flags it on page 4 - before you spend a week on the other 65 pages. The owner can override any verdict; overrides are logged with a reason.</p>
   </div>
-  <div class="card"><h2>Shred it</h2><p class="muted">One click pulls the RFP + attachments into the shredder. 200 pages is the normal case - runs as a background job with progress shown.</p><button class="btn">Shred this RFP</button></div>
+  <div class="card"><h2>Shred it</h2><p class="muted">One click pulls the RFP + attachments into the shredder. 200 pages is the normal case - runs as a background job with progress shown.</p><button class="btn" type="button">Shred this RFP</button></div>
 </section>
 
 <section id="matrix" class="screen">
   <h1>Compliance matrix</h1>
   <p class="muted">Every requirement, its source page, an owner, and the evidence needed. Section L vs M separated. A row without a source page is "unverified - check the RFP" and stays out of the draft until a human confirms it.</p>
-  <div class="card tablewrap"><table>
+  <div class="card tablewrap" tabindex="0" role="region" aria-label="Compliance matrices"><table>
     <thead><tr><th>Requirement</th><th>Source</th><th>Type</th><th>Owner</th><th>Evidence needed</th><th>Status</th></tr></thead>
     <tbody>
       <tr><td>Offeror must own the frontier models offered; third-party/reseller offers non-responsive</td><td>RFP &sect;2.1, p.4</td><td>Eligibility gate</td><td>Owner (go/no-go)</td><td>Ownership attestation - firm cannot meet &rarr; Pass</td><td><span class="chip chip-pass">Gate flagged</span></td></tr>
@@ -97,7 +164,7 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
 <section id="library" class="screen">
   <h1>Content library</h1>
   <p class="muted">The firm's approved memory. Only <strong>Approved, unexpired</strong> items feed the drafter. Proposal Leads propose; only Owner/Admin approves. No auto-approved content, ever.</p>
-  <div class="card tablewrap"><table>
+  <div class="card tablewrap" tabindex="0" role="region" aria-label="Library items"><table>
     <thead><tr><th>Item</th><th>Type</th><th>Tags</th><th>Status</th><th>Review by</th></tr></thead>
     <tbody>
       <tr><td>County SEO &amp; content program - results narrative</td><td>Past performance</td><td>541613, marketing</td><td><span class="chip chip-pursue">APPROVED</span></td><td>Mar 2027</td></tr>
@@ -118,7 +185,7 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
     <p>We guarantee a 40% traffic lift in the first quarter.</p>
     <div class="flagbox trace">Flagged: no trace to an approved library item or RFP page. Blocked from clean export until resolved.</div>
   </div>
-  <div class="card"><h2>Export</h2><p class="muted">Word (.docx) formatted to the RFP's format rules from the shred. "Working draft with flags" exports are watermarked as such.</p><button class="btn">Export to Word</button></div>
+  <div class="card"><h2>Export</h2><p class="muted">Word (.docx) formatted to the RFP's format rules from the shred. "Working draft with flags" exports are watermarked as such.</p><button class="btn" type="button">Export to Word</button></div>
 </section>
 
 <section id="board" class="screen">
@@ -130,6 +197,23 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
     <div><h2>Pursuing</h2><div class="stage">IT support services - Wake County<br><span class="muted">Shred complete, 34 requirements</span></div></div>
     <div><h2>Submitted</h2><div class="stage">Branding refresh - City of Raleigh<br><span class="muted">Pre-flight passed 11/11</span></div></div>
   </div>
+</section>
+
+<section id="payments" class="screen">
+  <h1>Payments workspace</h1>
+  <p class="muted">A place to organize contract payment requirements. Concept only: SMBids does not receive, hold, release or guarantee government funds.</p>
+  <div class="card">
+    <div class="concept-label">Design concept &middot; not connected</div>
+    <h2>Know what must happen before payment.</h2>
+    <p class="muted">Track the contract's invoice route, acceptance requirements and supporting documents in a future payment workspace. No bank details are collected here. No balances or payment status are inferred.</p>
+  </div>
+  <div class="concept-grid">
+    <div class="card"><div class="concept-label">01 / Contract</div><h2>Payment terms</h2><p class="muted">Proposed: record the paying agency, contract clause, invoice portal, acceptance conditions and stated payment schedule. Every item would point back to its source.</p><p>Not implemented. No contract selected.</p></div>
+    <div class="card"><div class="concept-label">02 / Evidence</div><h2>Invoice readiness</h2><p class="muted">Proposed: organize deliverable acceptance, invoice references and supporting records. A checklist is not proof that funds are reserved or that an invoice has been approved.</p><p>Not implemented. Nothing submitted.</p></div>
+    <div class="card"><div class="concept-label">03 / Future partner</div><h2>Escrow or financing</h2><p class="muted">Government payment routing and assignment rules depend on the contract and jurisdiction. Any custody, financing or guarantee service needs an eligible provider, agency compatibility and legal review first.</p><p>No provider chosen. No escrow account or money movement.</p></div>
+    <div class="card"><div class="concept-label">04 / Scope to confirm</div><h2>Bid security</h2><p class="muted">Bid bonds and private bid documents solve different problems. This part stays undefined until the intended meaning is confirmed.</p><p>No bond issuance or secure-submission service is active.</p></div>
+  </div>
+  <div class="card" style="margin-top:20px"><h2>Keep the official route</h2><p class="muted">Government payments remain with the agency's authorized process. Do not redirect payment or replace the contractor's payment instructions based on this concept.</p></div>
 </section>
 
 <section id="profile" class="screen">
@@ -145,7 +229,6 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
   </table></div>
   <div class="card"><h2>eVP commodity-code check</h2><p class="muted">Your NAICS codes cross-map to NC eVP commodity codes. A firm registered under the wrong code never gets the nightly email - likely gaps are flagged here.</p></div>
 </section>
-
 
 <section id="settings" class="screen">
   <h1>Settings</h1>
@@ -163,14 +246,34 @@ h1{font-size:1.5rem}h2{font-size:1.1rem}
   </div>
   <div class="card"><h2>Deadline reminders</h2><p class="muted">Tracked pursuits remind the owner at 10 / 5 / 2 days before the response deadline.</p></div>
 </section>
-</main>
+
+    </main>
+    <footer class="workspace-footer">Your team prepares the bid. Your firm reviews and submits. Static preview with sample data only.</footer>
+  </div>
+</div>
 <script>
-document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{
-  document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  a.classList.add('active');
-  document.getElementById(a.dataset.s).classList.add('active');
-}));
+(function(){
+  var toggle=document.getElementById('menuToggle');
+  var nav=document.getElementById('workspace-links');
+  var label=document.getElementById('currentLabel');
+  function closeMenu(){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.textContent='Workspace menu +';}
+  toggle.addEventListener('click',function(){
+    var open=nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.textContent=open?'Close workspace menu \u2212':'Workspace menu +';
+  });
+  document.querySelectorAll('[data-s]').forEach(function(a){
+    a.addEventListener('click',function(){
+      document.querySelectorAll('.nav a').forEach(function(x){x.classList.remove('is-current');x.removeAttribute('aria-current');});
+      document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+      var target=document.querySelector('.nav a[data-s="'+a.dataset.s+'"]');
+      if(target){target.classList.add('is-current');target.setAttribute('aria-current','page');}
+      document.getElementById(a.dataset.s).classList.add('active');
+      label.textContent=a.dataset.label||'Your workspace';
+      closeMenu();
+    });
+  });
+})();
 </script>
 </body>
 </html>
